@@ -3,7 +3,7 @@ import 'package:dreemz/core/helper/export.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dreemz/core/enums/action_state.dart';
 import 'package:dreemz/features/dashboard/presentation/cubit/dashboard_cubit.dart';
-import 'package:dreemz/features/dashboard/domain/model/pixabay_image_model.dart';
+import 'package:dreemz/features/dashboard/domain/enitity/pixabay_image_entity.dart';
 
 class FavImagesScreen extends StatefulWidget {
   const FavImagesScreen({super.key});

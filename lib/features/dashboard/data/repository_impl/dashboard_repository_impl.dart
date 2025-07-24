@@ -2,7 +2,7 @@ import 'package:dreemz/core/api/request_client.dart';
 import 'package:dreemz/core/api/response.dart';
 import 'package:dreemz/core/helper/app_type_def.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dreemz/features/dashboard/domain/model/pixabay_image_model.dart';
+import 'package:dreemz/features/dashboard/domain/enitity/pixabay_image_entity.dart';
 import 'package:dreemz/features/dashboard/domain/repository/dashboard_repository.dart';
 
 @Injectable(as: DashboardRepository)

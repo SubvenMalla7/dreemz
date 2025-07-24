@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dreemz/core/enums/action_state.dart';
-import 'package:dreemz/features/dashboard/domain/model/pixabay_image_model.dart';
+import 'package:dreemz/features/dashboard/domain/enitity/pixabay_image_entity.dart';
 import 'package:dreemz/features/dashboard/domain/usecase/search_images_usecase.dart';
 import 'package:dreemz/features/dashboard/domain/usecase/get_popular_images_usecase.dart';
 import 'package:dreemz/features/dashboard/data/service/favorites_service.dart';
