@@ -108,47 +108,70 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
   Widget _buildSearchBar() {
     return Container(
       padding: EdgeInsets.all(16.w),
-      child: TextField(
-        controller: _searchController,
-        decoration: InputDecoration(
-          hintText: 'Search for images...',
-          prefixIcon: const Icon(Icons.search),
-          suffixIcon: IconButton(
-            icon: const Icon(Icons.clear),
-            onPressed: () {
-              _searchController.clear();
-              context.read<DashboardCubit>().getPopularImages();
-            },
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search for images...',
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    _searchController.clear();
+                    context.read<DashboardCubit>().getPopularImages();
+                  },
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                  borderSide: const BorderSide(color: AppColors.primaryColor),
+                ),
+                filled: true,
+                fillColor: Colors.grey.shade50,
+              ),
+              onSubmitted: (value) {
+                _performSearch();
+              },
+            ),
           ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide(color: Colors.grey.shade300),
+          SizedBox(width: 12.w),
+          ElevatedButton(
+            onPressed: _performSearch,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryColor,
+              foregroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+            ),
+            child: Icon(
+              Icons.search,
+              size: 20.sp,
+              color: Colors.white,
+            ),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide(color: Colors.grey.shade300),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.r),
-            borderSide: const BorderSide(color: AppColors.primaryColor),
-          ),
-          filled: true,
-          fillColor: Colors.grey.shade50,
-        ),
-        onChanged: (value) {
-          // Search with debounce
-          Future.delayed(const Duration(milliseconds: 500), () {
-            if (mounted) {
-              if (value.trim().isEmpty) {
-                context.read<DashboardCubit>().getPopularImages();
-              } else {
-                context.read<DashboardCubit>().searchImages(value);
-              }
-            }
-          });
-        },
+        ],
       ),
     );
+  }
+
+  void _performSearch() {
+    final query = _searchController.text.trim();
+    if (query.isEmpty) {
+      context.read<DashboardCubit>().getPopularImages();
+    } else {
+      context.read<DashboardCubit>().searchImages(query);
+    }
   }
 
   Widget _buildImageGrid(List<PixabayImage> images, DashboardState state) {

@@ -30,7 +30,6 @@ EitherResponse handleNetworkCall(request, [dynamic fromJsonModel]) async {
     int statusCode = response.statusCode;
     if (response != null && statusCode >= 200 && statusCode < 300) {
       if (fromJsonModel != null) {
-        log(jsonEncode(response.data));
         return Right(DataResponse.success(fromJsonModel(response.data)));
       } else {
         if (response!.data == '') {
