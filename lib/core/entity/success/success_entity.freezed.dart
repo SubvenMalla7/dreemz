@@ -23,8 +23,12 @@ SucessContainerEntity _$SucessContainerEntityFromJson(
 mixin _$SucessContainerEntity {
   SuccessEntity get data => throw _privateConstructorUsedError;
 
+  /// Serializes this SucessContainerEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SucessContainerEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SucessContainerEntityCopyWith<SucessContainerEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$SucessContainerEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SucessContainerEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -64,6 +70,8 @@ class _$SucessContainerEntityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of SucessContainerEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SuccessEntityCopyWith<$Res> get data {
@@ -97,6 +105,8 @@ class __$$SucessContainerEntityImplCopyWithImpl<$Res>
       $Res Function(_$SucessContainerEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SucessContainerEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +145,13 @@ class _$SucessContainerEntityImpl implements _SucessContainerEntity {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SucessContainerEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SucessContainerEntityImplCopyWith<_$SucessContainerEntityImpl>
@@ -163,8 +175,11 @@ abstract class _SucessContainerEntity implements SucessContainerEntity {
 
   @override
   SuccessEntity get data;
+
+  /// Create a copy of SucessContainerEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SucessContainerEntityImplCopyWith<_$SucessContainerEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -178,8 +193,12 @@ mixin _$SuccessEntity {
   String get msg => throw _privateConstructorUsedError;
   int get statusCode => throw _privateConstructorUsedError;
 
+  /// Serializes this SuccessEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SuccessEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SuccessEntityCopyWith<SuccessEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -203,6 +222,8 @@ class _$SuccessEntityCopyWithImpl<$Res, $Val extends SuccessEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SuccessEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -241,6 +262,8 @@ class __$$SuccessEntityImplCopyWithImpl<$Res>
       _$SuccessEntityImpl _value, $Res Function(_$SuccessEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SuccessEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -290,11 +313,13 @@ class _$SuccessEntityImpl implements _SuccessEntity {
                 other.statusCode == statusCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, msg, statusCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SuccessEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessEntityImplCopyWith<_$SuccessEntityImpl> get copyWith =>
@@ -319,8 +344,11 @@ abstract class _SuccessEntity implements SuccessEntity {
   String get msg;
   @override
   int get statusCode;
+
+  /// Create a copy of SuccessEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessEntityImplCopyWith<_$SuccessEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -334,8 +362,12 @@ mixin _$SuccessIntEntity {
   int get msg => throw _privateConstructorUsedError;
   int get statusCode => throw _privateConstructorUsedError;
 
+  /// Serializes this SuccessIntEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SuccessIntEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SuccessIntEntityCopyWith<SuccessIntEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -359,6 +391,8 @@ class _$SuccessIntEntityCopyWithImpl<$Res, $Val extends SuccessIntEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SuccessIntEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -397,6 +431,8 @@ class __$$SuccessIntEntityImplCopyWithImpl<$Res>
       $Res Function(_$SuccessIntEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SuccessIntEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -446,11 +482,13 @@ class _$SuccessIntEntityImpl implements _SuccessIntEntity {
                 other.statusCode == statusCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, msg, statusCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SuccessIntEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessIntEntityImplCopyWith<_$SuccessIntEntityImpl> get copyWith =>
@@ -476,8 +514,11 @@ abstract class _SuccessIntEntity implements SuccessIntEntity {
   int get msg;
   @override
   int get statusCode;
+
+  /// Create a copy of SuccessIntEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessIntEntityImplCopyWith<_$SuccessIntEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

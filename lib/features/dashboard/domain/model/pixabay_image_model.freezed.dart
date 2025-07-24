@@ -24,8 +24,12 @@ mixin _$PixabayResponse {
   int get totalHits => throw _privateConstructorUsedError;
   List<PixabayImage> get hits => throw _privateConstructorUsedError;
 
+  /// Serializes this PixabayResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PixabayResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PixabayResponseCopyWith<PixabayResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$PixabayResponseCopyWithImpl<$Res, $Val extends PixabayResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PixabayResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$PixabayResponseImplCopyWithImpl<$Res>
       _$PixabayResponseImpl _value, $Res Function(_$PixabayResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PixabayResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,12 +167,14 @@ class _$PixabayResponseImpl implements _PixabayResponse {
             const DeepCollectionEquality().equals(other._hits, _hits));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, total, totalHits,
       const DeepCollectionEquality().hash(_hits));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PixabayResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PixabayResponseImplCopyWith<_$PixabayResponseImpl> get copyWith =>
@@ -194,8 +204,11 @@ abstract class _PixabayResponse implements PixabayResponse {
   int get totalHits;
   @override
   List<PixabayImage> get hits;
+
+  /// Create a copy of PixabayResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PixabayResponseImplCopyWith<_$PixabayResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -230,8 +243,12 @@ mixin _$PixabayImage {
   String get user => throw _privateConstructorUsedError;
   String get userImageURL => throw _privateConstructorUsedError;
 
+  /// Serializes this PixabayImage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PixabayImage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PixabayImageCopyWith<PixabayImage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -278,6 +295,8 @@ class _$PixabayImageCopyWithImpl<$Res, $Val extends PixabayImage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PixabayImage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -444,6 +463,8 @@ class __$$PixabayImageImplCopyWithImpl<$Res>
       _$PixabayImageImpl _value, $Res Function(_$PixabayImageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PixabayImage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -719,7 +740,7 @@ class _$PixabayImageImpl implements _PixabayImage {
                 other.userImageURL == userImageURL));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -748,7 +769,9 @@ class _$PixabayImageImpl implements _PixabayImage {
         userImageURL
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PixabayImage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PixabayImageImplCopyWith<_$PixabayImageImpl> get copyWith =>
@@ -837,8 +860,11 @@ abstract class _PixabayImage implements PixabayImage {
   String get user;
   @override
   String get userImageURL;
+
+  /// Create a copy of PixabayImage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PixabayImageImplCopyWith<_$PixabayImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

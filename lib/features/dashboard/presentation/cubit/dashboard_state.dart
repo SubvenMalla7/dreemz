@@ -8,7 +8,12 @@ class DashboardState with _$DashboardState {
     @Default('') String errorMessage,
     @Default('') String successMessage,
     @Default([]) List<PixabayImage> searchResults,
+    @Default([]) List<PixabayImage> popularImages,
     @Default([]) List<PixabayImage> favorites,
     @Default(0) int totalHits,
+    @Default(1) int currentPage,
+    @Default(true) bool hasMorePages,
+    @Default(false) bool isLoadingMore,
+    @Default('') String currentSearchQuery,
   }) = _DashboardState;
 }

@@ -22,8 +22,12 @@ ErrorEntity _$ErrorEntityFromJson(Map<String, dynamic> json) {
 mixin _$ErrorEntity {
   List<ErrorData> get errors => throw _privateConstructorUsedError;
 
+  /// Serializes this ErrorEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ErrorEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ErrorEntityCopyWith<ErrorEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$ErrorEntityCopyWithImpl<$Res, $Val extends ErrorEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ErrorEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$ErrorEntityImplCopyWithImpl<$Res>
       _$ErrorEntityImpl _value, $Res Function(_$ErrorEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ErrorEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,12 +133,14 @@ class _$ErrorEntityImpl implements _ErrorEntity {
             const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_errors));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ErrorEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorEntityImplCopyWith<_$ErrorEntityImpl> get copyWith =>
@@ -153,8 +163,11 @@ abstract class _ErrorEntity implements ErrorEntity {
 
   @override
   List<ErrorData> get errors;
+
+  /// Create a copy of ErrorEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorEntityImplCopyWith<_$ErrorEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -169,8 +182,12 @@ mixin _$ErrorData {
   String get detail => throw _privateConstructorUsedError;
   dynamic get code => throw _privateConstructorUsedError;
 
+  /// Serializes this ErrorData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ErrorData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ErrorDataCopyWith<ErrorData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -193,6 +210,8 @@ class _$ErrorDataCopyWithImpl<$Res, $Val extends ErrorData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ErrorData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -236,6 +255,8 @@ class __$$ErrorDataImplCopyWithImpl<$Res>
       _$ErrorDataImpl _value, $Res Function(_$ErrorDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ErrorData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -293,12 +314,14 @@ class _$ErrorDataImpl implements _ErrorData {
             const DeepCollectionEquality().equals(other.code, code));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, title, detail, const DeepCollectionEquality().hash(code));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ErrorData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorDataImplCopyWith<_$ErrorDataImpl> get copyWith =>
@@ -327,8 +350,11 @@ abstract class _ErrorData implements ErrorData {
   String get detail;
   @override
   dynamic get code;
+
+  /// Create a copy of ErrorData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorDataImplCopyWith<_$ErrorDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

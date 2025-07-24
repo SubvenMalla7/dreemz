@@ -30,16 +30,23 @@ class DashboardCubit extends Cubit<DashboardState> {
   /// Get current index
   int get currentIndex => state.currentIndex;
 
-  /// Search for images
+  /// Search for images with pagination
   Future<void> searchImages(String query) async {
     if (query.trim().isEmpty) {
       await getPopularImages();
       return;
     }
 
-    emit(state.copyWith(state: ActionState.loading));
+    emit(state.copyWith(
+      state: ActionState.loading,
+      currentSearchQuery: query,
+    ));
 
-    final result = await _searchImagesUseCase.call(query: query, perPage: 20);
+    final result = await _searchImagesUseCase.call(
+      query: query,
+      isNewSearch: true,
+      perPage: 20,
+    );
 
     result.fold(
       (l) {
@@ -49,20 +56,61 @@ class DashboardCubit extends Cubit<DashboardState> {
         ));
       },
       (r) {
-        emit(state.copyWith(
-          state: ActionState.success,
-          searchResults: r.data?.hits ?? [],
-          totalHits: r.data?.totalHits ?? 0,
-        ));
+        if (r.data != null) {
+          emit(state.copyWith(
+            state: ActionState.success,
+            searchResults: _searchImagesUseCase.searchResults,
+            totalHits: _searchImagesUseCase.totalHits,
+            currentPage: _searchImagesUseCase.currentPage,
+            hasMorePages: _searchImagesUseCase.hasMorePages,
+            isLoadingMore: false,
+          ));
+        }
       },
     );
   }
 
-  /// Get popular images
-  Future<void> getPopularImages() async {
-    emit(state.copyWith(state: ActionState.loading));
+  /// Load next page for search results
+  Future<void> loadNextPageForSearch() async {
+    if (!_searchImagesUseCase.canLoadMore()) return;
 
-    final result = await _getPopularImagesUseCase.call(perPage: 20);
+    emit(state.copyWith(isLoadingMore: true));
+
+    final result = await _searchImagesUseCase.loadNextPage();
+
+    result.fold(
+      (l) {
+        emit(state.copyWith(
+          state: ActionState.failed,
+          errorMessage: l.message ?? "Failed to load more images",
+          isLoadingMore: false,
+        ));
+      },
+      (r) {
+        if (r.data != null) {
+          emit(state.copyWith(
+            searchResults: _searchImagesUseCase.searchResults,
+            totalHits: _searchImagesUseCase.totalHits,
+            currentPage: _searchImagesUseCase.currentPage,
+            hasMorePages: _searchImagesUseCase.hasMorePages,
+            isLoadingMore: false,
+          ));
+        }
+      },
+    );
+  }
+
+  /// Get popular images with pagination
+  Future<void> getPopularImages() async {
+    emit(state.copyWith(
+      state: ActionState.loading,
+      currentSearchQuery: '',
+    ));
+
+    final result = await _getPopularImagesUseCase.call(
+      isNewRequest: true,
+      perPage: 20,
+    );
 
     result.fold(
       (l) {
@@ -72,11 +120,46 @@ class DashboardCubit extends Cubit<DashboardState> {
         ));
       },
       (r) {
+        if (r.data != null) {
+          emit(state.copyWith(
+            state: ActionState.success,
+            popularImages: _getPopularImagesUseCase.popularImages,
+            totalHits: _getPopularImagesUseCase.totalHits,
+            currentPage: _getPopularImagesUseCase.currentPage,
+            hasMorePages: _getPopularImagesUseCase.hasMorePages,
+            isLoadingMore: false,
+          ));
+        }
+      },
+    );
+  }
+
+  /// Load next page for popular images
+  Future<void> loadNextPageForPopular() async {
+    if (!_getPopularImagesUseCase.canLoadMore()) return;
+
+    emit(state.copyWith(isLoadingMore: true));
+
+    final result = await _getPopularImagesUseCase.loadNextPage();
+
+    result.fold(
+      (l) {
         emit(state.copyWith(
-          state: ActionState.success,
-          searchResults: r.data?.hits ?? [],
-          totalHits: r.data?.totalHits ?? 0,
+          state: ActionState.failed,
+          errorMessage: l.message ?? "Failed to load more images",
+          isLoadingMore: false,
         ));
+      },
+      (r) {
+        if (r.data != null) {
+          emit(state.copyWith(
+            popularImages: _getPopularImagesUseCase.popularImages,
+            totalHits: _getPopularImagesUseCase.totalHits,
+            currentPage: _getPopularImagesUseCase.currentPage,
+            hasMorePages: _getPopularImagesUseCase.hasMorePages,
+            isLoadingMore: false,
+          ));
+        }
       },
     );
   }

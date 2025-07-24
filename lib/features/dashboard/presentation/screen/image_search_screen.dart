@@ -13,11 +13,35 @@ class ImageSearchScreen extends StatefulWidget {
 
 class _ImageSearchScreenState extends State<ImageSearchScreen> {
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
 
   @override
   void dispose() {
     _searchController.dispose();
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
+      final cubit = context.read<DashboardCubit>();
+      final state = cubit.state;
+
+      if (state.currentSearchQuery.isNotEmpty) {
+        // Load more search results
+        cubit.loadNextPageForSearch();
+      } else {
+        // Load more popular images
+        cubit.loadNextPageForPopular();
+      }
+    }
   }
 
   @override
@@ -31,7 +55,9 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
             Expanded(
               child: BlocBuilder<DashboardCubit, DashboardState>(
                 builder: (context, state) {
-                  if (state.state == ActionState.loading) {
+                  if (state.state == ActionState.loading &&
+                      (state.searchResults.isEmpty &&
+                          state.popularImages.isEmpty)) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -64,7 +90,12 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
                     );
                   }
 
-                  return _buildImageGrid(state.searchResults);
+                  // Determine which list to show based on search query
+                  final images = state.currentSearchQuery.isNotEmpty
+                      ? state.searchResults
+                      : state.popularImages;
+
+                  return _buildImageGrid(images, state);
                 },
               ),
             ),
@@ -120,7 +151,7 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
     );
   }
 
-  Widget _buildImageGrid(List<PixabayImage> images) {
+  Widget _buildImageGrid(List<PixabayImage> images, DashboardState state) {
     if (images.isEmpty) {
       return Center(
         child: Column(
@@ -148,18 +179,41 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
       );
     }
 
-    return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12.w,
-        mainAxisSpacing: 12.h,
-        childAspectRatio: 1.0,
-      ),
-      itemCount: images.length,
-      itemBuilder: (context, index) {
-        return _buildImageCard(images[index], index);
+    return NotificationListener<ScrollNotification>(
+      onNotification: (ScrollNotification scrollInfo) {
+        if (scrollInfo.metrics.pixels >=
+            scrollInfo.metrics.maxScrollExtent - 200) {
+          if (state.currentSearchQuery.isNotEmpty) {
+            context.read<DashboardCubit>().loadNextPageForSearch();
+          } else {
+            context.read<DashboardCubit>().loadNextPageForPopular();
+          }
+        }
+        return false;
       },
+      child: GridView.builder(
+        controller: _scrollController,
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 12.w,
+          mainAxisSpacing: 12.h,
+          childAspectRatio: 1.0,
+        ),
+        itemCount: images.length + (state.isLoadingMore ? 1 : 0),
+        itemBuilder: (context, index) {
+          if (index == images.length) {
+            // Show loading indicator at the bottom
+            return const Center(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          return _buildImageCard(images[index], index);
+        },
+      ),
     );
   }
 

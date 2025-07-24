@@ -21,13 +21,17 @@ mixin _$DashboardState {
   String get errorMessage => throw _privateConstructorUsedError;
   String get successMessage => throw _privateConstructorUsedError;
   List<PixabayImage> get searchResults => throw _privateConstructorUsedError;
+  List<PixabayImage> get popularImages => throw _privateConstructorUsedError;
   List<PixabayImage> get favorites => throw _privateConstructorUsedError;
   int get totalHits => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
+  bool get hasMorePages => throw _privateConstructorUsedError;
   bool get isLoadingMore => throw _privateConstructorUsedError;
-  String get currentQuery => throw _privateConstructorUsedError;
+  String get currentSearchQuery => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DashboardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DashboardStateCopyWith<DashboardState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,11 +48,13 @@ abstract class $DashboardStateCopyWith<$Res> {
       String errorMessage,
       String successMessage,
       List<PixabayImage> searchResults,
+      List<PixabayImage> popularImages,
       List<PixabayImage> favorites,
       int totalHits,
       int currentPage,
+      bool hasMorePages,
       bool isLoadingMore,
-      String currentQuery});
+      String currentSearchQuery});
 }
 
 /// @nodoc
@@ -61,6 +67,8 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DashboardState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -69,11 +77,13 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
     Object? errorMessage = null,
     Object? successMessage = null,
     Object? searchResults = null,
+    Object? popularImages = null,
     Object? favorites = null,
     Object? totalHits = null,
     Object? currentPage = null,
+    Object? hasMorePages = null,
     Object? isLoadingMore = null,
-    Object? currentQuery = null,
+    Object? currentSearchQuery = null,
   }) {
     return _then(_value.copyWith(
       currentIndex: null == currentIndex
@@ -96,6 +106,10 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
               as List<PixabayImage>,
+      popularImages: null == popularImages
+          ? _value.popularImages
+          : popularImages // ignore: cast_nullable_to_non_nullable
+              as List<PixabayImage>,
       favorites: null == favorites
           ? _value.favorites
           : favorites // ignore: cast_nullable_to_non_nullable
@@ -108,13 +122,17 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
               as int,
+      hasMorePages: null == hasMorePages
+          ? _value.hasMorePages
+          : hasMorePages // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoadingMore: null == isLoadingMore
           ? _value.isLoadingMore
           : isLoadingMore // ignore: cast_nullable_to_non_nullable
               as bool,
-      currentQuery: null == currentQuery
-          ? _value.currentQuery
-          : currentQuery // ignore: cast_nullable_to_non_nullable
+      currentSearchQuery: null == currentSearchQuery
+          ? _value.currentSearchQuery
+          : currentSearchQuery // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -134,11 +152,13 @@ abstract class _$$DashboardStateImplCopyWith<$Res>
       String errorMessage,
       String successMessage,
       List<PixabayImage> searchResults,
+      List<PixabayImage> popularImages,
       List<PixabayImage> favorites,
       int totalHits,
       int currentPage,
+      bool hasMorePages,
       bool isLoadingMore,
-      String currentQuery});
+      String currentSearchQuery});
 }
 
 /// @nodoc
@@ -149,6 +169,8 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
       _$DashboardStateImpl _value, $Res Function(_$DashboardStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DashboardState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,11 +179,13 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? successMessage = null,
     Object? searchResults = null,
+    Object? popularImages = null,
     Object? favorites = null,
     Object? totalHits = null,
     Object? currentPage = null,
+    Object? hasMorePages = null,
     Object? isLoadingMore = null,
-    Object? currentQuery = null,
+    Object? currentSearchQuery = null,
   }) {
     return _then(_$DashboardStateImpl(
       currentIndex: null == currentIndex
@@ -184,6 +208,10 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
           ? _value._searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
               as List<PixabayImage>,
+      popularImages: null == popularImages
+          ? _value._popularImages
+          : popularImages // ignore: cast_nullable_to_non_nullable
+              as List<PixabayImage>,
       favorites: null == favorites
           ? _value._favorites
           : favorites // ignore: cast_nullable_to_non_nullable
@@ -196,13 +224,17 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
               as int,
+      hasMorePages: null == hasMorePages
+          ? _value.hasMorePages
+          : hasMorePages // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoadingMore: null == isLoadingMore
           ? _value.isLoadingMore
           : isLoadingMore // ignore: cast_nullable_to_non_nullable
               as bool,
-      currentQuery: null == currentQuery
-          ? _value.currentQuery
-          : currentQuery // ignore: cast_nullable_to_non_nullable
+      currentSearchQuery: null == currentSearchQuery
+          ? _value.currentSearchQuery
+          : currentSearchQuery // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -217,12 +249,15 @@ class _$DashboardStateImpl implements _DashboardState {
       this.errorMessage = '',
       this.successMessage = '',
       final List<PixabayImage> searchResults = const [],
+      final List<PixabayImage> popularImages = const [],
       final List<PixabayImage> favorites = const [],
       this.totalHits = 0,
       this.currentPage = 1,
+      this.hasMorePages = true,
       this.isLoadingMore = false,
-      this.currentQuery = ''})
+      this.currentSearchQuery = ''})
       : _searchResults = searchResults,
+        _popularImages = popularImages,
         _favorites = favorites;
 
   @override
@@ -246,6 +281,15 @@ class _$DashboardStateImpl implements _DashboardState {
     return EqualUnmodifiableListView(_searchResults);
   }
 
+  final List<PixabayImage> _popularImages;
+  @override
+  @JsonKey()
+  List<PixabayImage> get popularImages {
+    if (_popularImages is EqualUnmodifiableListView) return _popularImages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_popularImages);
+  }
+
   final List<PixabayImage> _favorites;
   @override
   @JsonKey()
@@ -263,14 +307,17 @@ class _$DashboardStateImpl implements _DashboardState {
   final int currentPage;
   @override
   @JsonKey()
+  final bool hasMorePages;
+  @override
+  @JsonKey()
   final bool isLoadingMore;
   @override
   @JsonKey()
-  final String currentQuery;
+  final String currentSearchQuery;
 
   @override
   String toString() {
-    return 'DashboardState(currentIndex: $currentIndex, state: $state, errorMessage: $errorMessage, successMessage: $successMessage, searchResults: $searchResults, favorites: $favorites, totalHits: $totalHits, currentPage: $currentPage, isLoadingMore: $isLoadingMore, currentQuery: $currentQuery)';
+    return 'DashboardState(currentIndex: $currentIndex, state: $state, errorMessage: $errorMessage, successMessage: $successMessage, searchResults: $searchResults, popularImages: $popularImages, favorites: $favorites, totalHits: $totalHits, currentPage: $currentPage, hasMorePages: $hasMorePages, isLoadingMore: $isLoadingMore, currentSearchQuery: $currentSearchQuery)';
   }
 
   @override
@@ -288,15 +335,19 @@ class _$DashboardStateImpl implements _DashboardState {
             const DeepCollectionEquality()
                 .equals(other._searchResults, _searchResults) &&
             const DeepCollectionEquality()
+                .equals(other._popularImages, _popularImages) &&
+            const DeepCollectionEquality()
                 .equals(other._favorites, _favorites) &&
             (identical(other.totalHits, totalHits) ||
                 other.totalHits == totalHits) &&
             (identical(other.currentPage, currentPage) ||
                 other.currentPage == currentPage) &&
+            (identical(other.hasMorePages, hasMorePages) ||
+                other.hasMorePages == hasMorePages) &&
             (identical(other.isLoadingMore, isLoadingMore) ||
                 other.isLoadingMore == isLoadingMore) &&
-            (identical(other.currentQuery, currentQuery) ||
-                other.currentQuery == currentQuery));
+            (identical(other.currentSearchQuery, currentSearchQuery) ||
+                other.currentSearchQuery == currentSearchQuery));
   }
 
   @override
@@ -307,13 +358,17 @@ class _$DashboardStateImpl implements _DashboardState {
       errorMessage,
       successMessage,
       const DeepCollectionEquality().hash(_searchResults),
+      const DeepCollectionEquality().hash(_popularImages),
       const DeepCollectionEquality().hash(_favorites),
       totalHits,
       currentPage,
+      hasMorePages,
       isLoadingMore,
-      currentQuery);
+      currentSearchQuery);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DashboardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DashboardStateImplCopyWith<_$DashboardStateImpl> get copyWith =>
@@ -328,11 +383,13 @@ abstract class _DashboardState implements DashboardState {
       final String errorMessage,
       final String successMessage,
       final List<PixabayImage> searchResults,
+      final List<PixabayImage> popularImages,
       final List<PixabayImage> favorites,
       final int totalHits,
       final int currentPage,
+      final bool hasMorePages,
       final bool isLoadingMore,
-      final String currentQuery}) = _$DashboardStateImpl;
+      final String currentSearchQuery}) = _$DashboardStateImpl;
 
   @override
   int get currentIndex;
@@ -345,17 +402,24 @@ abstract class _DashboardState implements DashboardState {
   @override
   List<PixabayImage> get searchResults;
   @override
+  List<PixabayImage> get popularImages;
+  @override
   List<PixabayImage> get favorites;
   @override
   int get totalHits;
   @override
   int get currentPage;
   @override
+  bool get hasMorePages;
+  @override
   bool get isLoadingMore;
   @override
-  String get currentQuery;
+  String get currentSearchQuery;
+
+  /// Create a copy of DashboardState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DashboardStateImplCopyWith<_$DashboardStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

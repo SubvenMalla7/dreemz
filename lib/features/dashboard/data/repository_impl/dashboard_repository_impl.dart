@@ -11,8 +11,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
 
   final RequestClient _client;
 
-  static const String _apiKey =
-      '51465394-3e58cad945f8d4f5a5cef6794'; // TODO: Add your API key here
+  static const String _apiKey = '51465394-3e58cad945f8d4f5a5cef6794';
 
   @override
   EitherResponse searchImages({
@@ -23,6 +22,8 @@ class DashboardRepositoryImpl implements DashboardRepository {
     var request = _client.get(endPoint: "", queryParameters: {
       'key': _apiKey,
       'q': query,
+      'page': page,
+      'per_page': perPage,
     });
     return await handleNetworkCall(request, PixabayResponse.fromJson);
   }
@@ -34,6 +35,8 @@ class DashboardRepositoryImpl implements DashboardRepository {
   }) async {
     var request = _client.get(endPoint: "", queryParameters: {
       'key': _apiKey,
+      'page': page,
+      'per_page': perPage,
     });
     return await handleNetworkCall(request, PixabayResponse.fromJson);
   }
