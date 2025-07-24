@@ -179,41 +179,46 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
       );
     }
 
-    return NotificationListener<ScrollNotification>(
-      onNotification: (ScrollNotification scrollInfo) {
-        if (scrollInfo.metrics.pixels >=
-            scrollInfo.metrics.maxScrollExtent - 200) {
-          if (state.currentSearchQuery.isNotEmpty) {
-            context.read<DashboardCubit>().loadNextPageForSearch();
-          } else {
-            context.read<DashboardCubit>().loadNextPageForPopular();
-          }
-        }
-        return false;
-      },
-      child: GridView.builder(
-        controller: _scrollController,
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12.w,
-          mainAxisSpacing: 12.h,
-          childAspectRatio: 1.0,
-        ),
-        itemCount: images.length + (state.isLoadingMore ? 1 : 0),
-        itemBuilder: (context, index) {
-          if (index == images.length) {
-            // Show loading indicator at the bottom
-            return const Center(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: CircularProgressIndicator(),
+    return Column(
+      children: [
+        Expanded(
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification scrollInfo) {
+              if (scrollInfo.metrics.pixels >=
+                  scrollInfo.metrics.maxScrollExtent - 200) {
+                if (state.currentSearchQuery.isNotEmpty) {
+                  context.read<DashboardCubit>().loadNextPageForSearch();
+                } else {
+                  context.read<DashboardCubit>().loadNextPageForPopular();
+                }
+              }
+              return false;
+            },
+            child: GridView.builder(
+              controller: _scrollController,
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12.w,
+                mainAxisSpacing: 12.h,
+                childAspectRatio: 1.0,
               ),
-            );
-          }
-          return _buildImageCard(images[index], index);
-        },
-      ),
+              itemCount: images.length,
+              itemBuilder: (context, index) {
+                return _buildImageCard(images[index], index);
+              },
+            ),
+          ),
+        ),
+        // Loading indicator below GridView
+        if (state.isLoadingMore)
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 16.h),
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+      ],
     );
   }
 
