@@ -44,9 +44,3 @@ flutter run --flavor live
 echo "live release"
 flutter run --flavor live --release
 
-
-
-
-
-
-change dynamic ios appid

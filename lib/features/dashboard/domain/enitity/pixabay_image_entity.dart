@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'pixabay_image_model.freezed.dart';
-part 'pixabay_image_model.g.dart';
+part 'pixabay_image_entity.freezed.dart';
+part 'pixabay_image_entity.g.dart';
 
 @freezed
 class PixabayResponse with _$PixabayResponse {

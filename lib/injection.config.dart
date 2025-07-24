@@ -10,8 +10,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dreemz/core/api/request_client.dart' as _i1023;
-import 'package:dreemz/features/dashboard/data/api/pixabay_api_service.dart'
-    as _i774;
 import 'package:dreemz/features/dashboard/data/repository_impl/dashboard_repository_impl.dart'
     as _i633;
 import 'package:dreemz/features/dashboard/data/service/favorites_service.dart'
@@ -39,7 +37,6 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i1023.RequestClient>(() => _i1023.RequestClient());
-    gh.factory<_i774.PixabayApiService>(() => _i774.PixabayApiService());
     gh.factory<_i324.FavoritesService>(() => _i324.FavoritesService());
     gh.factory<_i781.DashboardRepository>(
         () => _i633.DashboardRepositoryImpl(gh<_i1023.RequestClient>()));

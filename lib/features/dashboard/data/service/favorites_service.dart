@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dreemz/features/dashboard/domain/model/pixabay_image_model.dart';
+import 'package:dreemz/features/dashboard/domain/enitity/pixabay_image_entity.dart';
 
 @injectable
 class FavoritesService {
