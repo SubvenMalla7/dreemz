@@ -1,0 +1,130 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+import 'package:dreemz/core/enums/action_state.dart';
+import 'package:dreemz/features/dashboard/domain/model/pixabay_image_model.dart';
+import 'package:dreemz/features/dashboard/domain/usecase/search_images_usecase.dart';
+import 'package:dreemz/features/dashboard/domain/usecase/get_popular_images_usecase.dart';
+import 'package:dreemz/features/dashboard/data/service/favorites_service.dart';
+
+part 'dashboard_state.dart';
+part 'dashboard_cubit.freezed.dart';
+
+@injectable
+class DashboardCubit extends Cubit<DashboardState> {
+  DashboardCubit(
+    this._searchImagesUseCase,
+    this._getPopularImagesUseCase,
+    this._favoritesService,
+  ) : super(const DashboardState());
+
+  final SearchImagesUseCase _searchImagesUseCase;
+  final GetPopularImagesUseCase _getPopularImagesUseCase;
+  final FavoritesService _favoritesService;
+
+  /// Change the current bottom navigation index
+  void changeIndex(int index) {
+    emit(state.copyWith(currentIndex: index));
+  }
+
+  /// Get current index
+  int get currentIndex => state.currentIndex;
+
+  /// Search for images
+  Future<void> searchImages(String query) async {
+    if (query.trim().isEmpty) {
+      await getPopularImages();
+      return;
+    }
+
+    emit(state.copyWith(state: ActionState.loading));
+
+    final result = await _searchImagesUseCase.call(query: query, perPage: 20);
+
+    result.fold(
+      (l) {
+        emit(state.copyWith(
+          state: ActionState.failed,
+          errorMessage: l.message ?? "Failed to search images",
+        ));
+      },
+      (r) {
+        emit(state.copyWith(
+          state: ActionState.success,
+          searchResults: r.data?.hits ?? [],
+          totalHits: r.data?.totalHits ?? 0,
+        ));
+      },
+    );
+  }
+
+  /// Get popular images
+  Future<void> getPopularImages() async {
+    emit(state.copyWith(state: ActionState.loading));
+
+    final result = await _getPopularImagesUseCase.call(perPage: 20);
+
+    result.fold(
+      (l) {
+        emit(state.copyWith(
+          state: ActionState.failed,
+          errorMessage: l.message ?? "Failed to get popular images",
+        ));
+      },
+      (r) {
+        emit(state.copyWith(
+          state: ActionState.success,
+          searchResults: r.data?.hits ?? [],
+          totalHits: r.data?.totalHits ?? 0,
+        ));
+      },
+    );
+  }
+
+  /// Load favorites
+  Future<void> loadFavorites() async {
+    emit(state.copyWith(state: ActionState.loading));
+
+    try {
+      final favorites = await _favoritesService.getFavorites();
+      emit(state.copyWith(
+        state: ActionState.success,
+        favorites: favorites,
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        state: ActionState.failed,
+        errorMessage: 'Failed to load favorites',
+      ));
+    }
+  }
+
+  /// Add to favorites
+  Future<void> addToFavorites(PixabayImage image) async {
+    try {
+      final success = await _favoritesService.addToFavorites(image);
+      if (success) {
+        await loadFavorites(); // Reload favorites
+      }
+    } catch (e) {
+      // Handle error silently for now
+    }
+  }
+
+  /// Remove from favorites
+  Future<void> removeFromFavorites(int imageId) async {
+    try {
+      final success = await _favoritesService.removeFromFavorites(imageId);
+      if (success) {
+        await loadFavorites(); // Reload favorites
+      }
+    } catch (e) {
+      // Handle error silently for now
+    }
+  }
+
+  /// Check if image is favorite
+  Future<bool> isFavorite(int imageId) async {
+    return await _favoritesService.isFavorite(imageId);
+  }
+}

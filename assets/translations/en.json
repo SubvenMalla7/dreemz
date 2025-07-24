@@ -1,0 +1,15 @@
+{
+  "app_title": "Flutter Demo",
+  "home_page": "Home Page",
+  "hello_world": "Hello, World!",
+  "login": {
+    "form_title": "Login Form",
+    "username": "Username",
+    "username_hint": "Enter username",
+    "password": "Password",
+    "password_hint": "Enter password",
+    "forgot_password": "Forgot password?",
+    "running_order": "Running order",
+    "pos_system": "POS System"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "app_title": "फ्लटर डेमो",
+  "home_page": "होम पेज",
+  "hello_world": "नमस्ते, दुनिया!",
+  "login": {
+    "form_title": "लॉगिन फॉर्म",
+    "username": "उपयोगकर्ता नाम",
+    "username_hint": "उपयोगकर्ता नाम दर्ज करें",
+    "password": "पासवर्ड",
+    "password_hint": "पासवर्ड दर्ज करें",
+    "forgot_password": "पासवर्ड भूल गए?",
+    "running_order": "चल रही क्रम",
+    "pos_system": "POS सिस्टम"
+  }
+}

@@ -1,0 +1,413 @@
+.
+├── common
+│   ├── data
+│   │   ├── models
+│   │   │   ├── photo_model.dart
+│   │   │   ├── user_detail_model.dart
+│   │   │   └── user_model.dart
+│   │   └── source
+│   │       └── scrape_data_source.dart
+│   ├── domain
+│   │   └── entities
+│   │       ├── photo.dart
+│   │       ├── user.dart
+│   │       └── user_detail.dart
+│   └── widgets
+│       ├── app_widgets.dart
+│       ├── code_picker_widget.dart
+│       ├── custom_back_button.dart
+│       ├── custom_button.dart
+│       ├── custom_error_dialog.dart
+│       ├── custom_exit_card.dart
+│       ├── custom_input.dart
+│       ├── custom_scaffold.dart
+│       ├── custom_slider.dart
+│       ├── custom_textfield.dart
+│       ├── custom_video_payer.dart
+│       └── media_picker.dart
+├── core
+│   ├── constant
+│   │   ├── assets.dart
+│   │   ├── colors.dart
+│   │   ├── constant.dart
+│   │   └── strings.dart
+│   ├── di
+│   │   └── app_module.dart
+│   ├── enums
+│   │   ├── action_state.dart
+│   │   ├── auth_state.dart
+│   │   ├── body_activity.dart
+│   │   ├── gender.dart
+│   │   ├── media_type_enum.dart
+│   │   └── photo_source.dart
+│   ├── error
+│   │   ├── exception.dart
+│   │   └── failures.dart
+│   ├── extension
+│   │   ├── food_extension.dart
+│   │   ├── json_extension.dart
+│   │   ├── meal_extension.dart
+│   │   ├── meal_option_extension.dart
+│   │   ├── string_extension.dart
+│   │   ├── timestamp_extension.dart
+│   │   └── weight_checkin_extension.dart
+│   ├── helper
+│   │   ├── calorie_calculator.dart
+│   │   ├── check_in_adjustment_helper.dart
+│   │   ├── custom_icons.dart
+│   │   ├── file_service.dart
+│   │   ├── image_helper.dart
+│   │   ├── import_all.dart
+│   │   └── meal_automation.dart
+│   ├── network
+│   │   └── network_info.dart
+│   ├── resources
+│   │   └── assets_manager.dart
+│   ├── routes
+│   │   └── app_routes.dart
+│   ├── theme
+│   │   ├── app_theme.dart
+│   │   └── text_style.dart
+│   ├── usecase
+│   │   └── use_case.dart
+│   └── util
+│       ├── app_decorations.dart
+│       ├── dialog_utils.dart
+│       └── dimensions.dart
+├── features
+│   ├── auth
+│   │   ├── data
+│   │   │   ├── repository
+│   │   │   │   └── auth_repository.dart
+│   │   │   ├── requests
+│   │   │   │   └── login_request.dart
+│   │   │   └── source
+│   │   │       ├── auth_local_source.dart
+│   │   │       └── auth_remote_source.dart
+│   │   ├── domain
+│   │   │   ├── repository
+│   │   │   │   └── auth_repository.dart
+│   │   │   └── usecase
+│   │   │       ├── auth_check_usercase.dart
+│   │   │       ├── delete_account_usercase.dart
+│   │   │       ├── login_usecase.dart
+│   │   │       └── sign_up_usecase.dart
+│   │   └── presentation
+│   │       ├── blocs
+│   │       │   ├── auth
+│   │       │   ├── login
+│   │       │   └── signup
+│   │       ├── views
+│   │       │   ├── login_page.dart
+│   │       │   ├── login_page_v1.dart
+│   │       │   ├── register_page.dart
+│   │       │   ├── register_page_v1.dart
+│   │       │   └── splash_page.dart
+│   │       └── widget
+│   │           ├── form_widgets.dart
+│   │           └── social_login_btn.dart
+│   ├── chat
+│   │   ├── data
+│   │   │   ├── model
+│   │   │   │   ├── custom_metadata_model.dart
+│   │   │   │   └── media_data_model.dart
+│   │   │   ├── repository_impl
+│   │   │   │   └── chat_repository_impl.dart
+│   │   │   ├── request
+│   │   │   │   ├── change_active_status_request.dart
+│   │   │   │   ├── create_room_request.dart
+│   │   │   │   ├── send_text_message_request.dart
+│   │   │   │   └── upload_media_request.dart
+│   │   │   └── source
+│   │   │       └── chat_source.dart
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   ├── custom_metadata.dart
+│   │   │   │   └── media_data.dart
+│   │   │   ├── repository
+│   │   │   │   └── chat_repository.dart
+│   │   │   └── usecase
+│   │   │       ├── change_active_status_usecase.dart
+│   │   │       ├── create_room_usecase.dart
+│   │   │       ├── get_active_status_usecase.dart
+│   │   │       ├── get_media_usecase.dart
+│   │   │       ├── get_message_usecase.dart
+│   │   │       ├── get_read_status_usecase.dart
+│   │   │       ├── get_room_usecase.dart
+│   │   │       ├── send_text_message_usecase.dart
+│   │   │       └── upload_media_usecase.dart
+│   │   └── presentation
+│   │       ├── cubit
+│   │       │   ├── chat_cubit.dart
+│   │       │   ├── chat_cubit.freezed.dart
+│   │       │   └── chat_state.dart
+│   │       ├── screen
+│   │       │   ├── chat_message_page.dart
+│   │       │   ├── image_viewer_page.dart
+│   │       │   └── media_listing_page.dart
+│   │       └── widget
+│   │           ├── audio_message_widget.dart
+│   │           ├── chat_image_builder_widget.dart
+│   │           ├── chat_media_widget.dart
+│   │           ├── chat_message_text_field.dart
+│   │           ├── chat_video_player_widget.dart
+│   │           └── media_video_widget.dart
+│   ├── dashboard
+│   │   └── presentation
+│   │       ├── blocs
+│   │       │   └── bottom_nav_cubit.dart
+│   │       ├── views
+│   │       │   ├── dashboard_page.dart
+│   │       │   ├── dashboard_page_v1.dart
+│   │       │   ├── dashboard_page_v2.dart
+│   │       │   ├── home_stats_view.dart
+│   │       │   ├── home_stats_view_v1.dart
+│   │       │   └── new_home_page.dart
+│   │       └── widgets
+│   │           ├── bar_graph_widget.dart
+│   │           ├── bmi_chart.dart
+│   │           ├── bottom_nav_painter.dart
+│   │           ├── custom_nav_bar.dart
+│   │           ├── home_calendar_widget.dart
+│   │           ├── home_view.dart
+│   │           ├── home_view_v1.dart
+│   │           ├── home_weight_graph.dart
+│   │           ├── logo_text_widget.dart
+│   │           ├── macro_widget.dart
+│   │           ├── progress_chart.dart
+│   │           ├── progress_line_chart_widget.dart
+│   │           └── water_consumption_tracker.dart
+│   ├── habit
+│   │   ├── data
+│   │   │   ├── models
+│   │   │   │   └── habit_model.dart
+│   │   │   ├── repository
+│   │   │   │   └── habit_repository.dart
+│   │   │   ├── request
+│   │   │   │   ├── assign_habit_request.dart
+│   │   │   │   └── habit_complete_request.dart
+│   │   │   └── source
+│   │   │       └── habit_remote_source.dart
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   └── habit.dart
+│   │   │   ├── repository
+│   │   │   │   └── habit_repository.dart
+│   │   │   └── usecase
+│   │   │       ├── assign_habit_usecase.dart
+│   │   │       ├── complete_assigned_habit_usecase.dart
+│   │   │       ├── get_assigned_habit_usecase.dart
+│   │   │       ├── get_completed_assigned_habit_usecase.dart
+│   │   │       ├── get_habit_usecase.dart
+│   │   │       └── uncheck_assigned_habit.dart
+│   │   └── presentation
+│   │       ├── blocs
+│   │       │   └── habit
+│   │       ├── views
+│   │       │   └── habit_page.dart
+│   │       └── widgets
+│   │           ├── habit_calendar_view.dart
+│   │           ├── habit_list_view.dart
+│   │           └── habit_row.dart
+│   ├── leaderboard
+│   │   ├── data
+│   │   │   └── models
+│   │   │       ├── leaderboard_model.dart
+│   │   │       ├── user_leaderboard_model.dart
+│   │   │       ├── user_leaderboard_model.freezed.dart
+│   │   │       └── user_leaderboard_model.g.dart
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   └── leaderboard.dart
+│   │   │   └── usecase
+│   │   │       └── leaderboard_usecase.dart
+│   │   └── presentation
+│   │       ├── blocs
+│   │       │   └── leaderboard
+│   │       ├── views
+│   │       │   └── leaderboard_page.dart
+│   │       └── widget
+│   │           ├── leader_container_widget.dart
+│   │           ├── leader_flip_widget.dart
+│   │           └── leaderboard_dropdown.dart
+│   ├── meal
+│   │   ├── data
+│   │   │   ├── models
+│   │   │   │   ├── auto_meal_model.dart
+│   │   │   │   ├── food_model.dart
+│   │   │   │   ├── macro_model.dart
+│   │   │   │   ├── meal_info_model.dart
+│   │   │   │   ├── meal_model.dart
+│   │   │   │   ├── meal_option_model.dart
+│   │   │   │   └── meal_timing_model.dart
+│   │   │   ├── repository
+│   │   │   │   └── meal_repository.dart
+│   │   │   ├── request
+│   │   │   │   ├── assign_meal_request.dart
+│   │   │   │   └── automate_request.dart
+│   │   │   └── source
+│   │   │       ├── meal_local_source.dart
+│   │   │       └── meal_remote_source.dart
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   ├── auto_meal.dart
+│   │   │   │   ├── diet_plan.dart
+│   │   │   │   ├── food.dart
+│   │   │   │   ├── macro.dart
+│   │   │   │   ├── meal.dart
+│   │   │   │   ├── meal_info.dart
+│   │   │   │   ├── meal_option.dart
+│   │   │   │   └── meal_timing.dart
+│   │   │   ├── repository
+│   │   │   │   └── meal_repository.dart
+│   │   │   └── usecase
+│   │   │       ├── automate_meal_usecase.dart
+│   │   │       ├── edit_automatic_assigned_meals_use_case.dart
+│   │   │       ├── get_auto_meals_usecase.dart
+│   │   │       ├── get_foods_use_case.dart
+│   │   │       ├── get_meal_infos_usecase.dart
+│   │   │       ├── get_meal_timings_usecase.dart
+│   │   │       └── get_user_meals_usecase.dart
+│   │   └── presentation
+│   │       ├── blocs
+│   │       │   ├── auto_meal
+│   │       │   ├── detail
+│   │       │   ├── edit_meals
+│   │       │   ├── food
+│   │       │   ├── info
+│   │       │   ├── timing
+│   │       │   └── user_meal
+│   │       ├── views
+│   │       │   ├── auto_meal_list_view.dart
+│   │       │   ├── edit_meals_page.dart
+│   │       │   ├── meal_details_page.dart
+│   │       │   └── meals_view.dart
+│   │       └── widgets
+│   │           ├── change_meals_number_dialog.dart
+│   │           ├── daily_calorie_card.dart
+│   │           ├── divide_meals_number_widget.dart
+│   │           ├── meal_card.dart
+│   │           └── swap_meal_option_dialog.dart
+│   ├── profile
+│   │   ├── data
+│   │   │   ├── repository
+│   │   │   │   └── user_repository.dart
+│   │   │   ├── requests
+│   │   │   │   └── profile_setup_request.dart
+│   │   │   └── source
+│   │   │       └── user_remote_source.dart
+│   │   ├── domain
+│   │   │   ├── repository
+│   │   │   │   └── user_repository.dart
+│   │   │   └── usecase
+│   │   │       ├── get_current_user_usecase.dart
+│   │   │       └── profile_set_up_usecase.dart
+│   │   └── presentation
+│   │       ├── blocs
+│   │       │   ├── add_diet_plan
+│   │       │   ├── current_user_cubit.dart
+│   │       │   ├── diet_plan
+│   │       │   └── set_up
+│   │       ├── views
+│   │       │   ├── get_started_page_v1.dart
+│   │       │   ├── profile_setup_page.dart
+│   │       │   └── steppers
+│   │       └── widgets
+│   │           ├── add_diet_plan_dialog.dart
+│   │           ├── adjust_calorie_percentage_dialog.dart
+│   │           ├── budget_foods_widget.dart
+│   │           ├── diet_plan_drop_item.dart
+│   │           ├── diet_plan_expansion_tile.dart
+│   │           └── diet_plan_pref_chips.dart
+│   ├── progress
+│   │   ├── data
+│   │   │   ├── models
+│   │   │   │   ├── weight_checkin_model.dart
+│   │   │   │   ├── weight_set_model.dart
+│   │   │   │   └── weight_survey_model.dart
+│   │   │   ├── repository
+│   │   │   │   └── weight_progress_repository.dart
+│   │   │   ├── requests
+│   │   │   │   └── save_note_request.dart
+│   │   │   └── source
+│   │   │       └── weight_progress_reomte_source.dart
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   ├── weight_checkin.dart
+│   │   │   │   ├── weight_set.dart
+│   │   │   │   └── weight_survey.dart
+│   │   │   ├── repository
+│   │   │   │   └── weight_progress_repository.dart
+│   │   │   └── usecase
+│   │   │       ├── add_weight_checkin_usecase.dart
+│   │   │       ├── get_weight_checkins_usecase.dart
+│   │   │       └── save_weight_note_usecase.dart
+│   │   └── presentation
+│   │       ├── blocs
+│   │       │   ├── check_in_adjust
+│   │       │   ├── weight_check_in
+│   │       │   └── weights
+│   │       ├── views
+│   │       │   ├── weight_check_in_input_view.dart
+│   │       │   ├── weight_check_in_page.dart
+│   │       │   ├── weight_check_in_qna_view.dart
+│   │       │   ├── weight_detail_page.dart
+│   │       │   └── weight_progress_page.dart
+│   │       └── widgets
+│   │           ├── check_in_alert_dialog.dart
+│   │           ├── compliance_survey_dialog.dart
+│   │           ├── upload_image_widget.dart
+│   │           ├── weight_picker_component.dart
+│   │           └── weight_progress_graph.dart
+│   ├── promotion
+│   │   ├── data
+│   │   │   ├── model
+│   │   │   │   └── promotion_video_model.dart
+│   │   │   ├── repository
+│   │   │   │   └── video_repository.dart
+│   │   │   └── source
+│   │   │       └── video_remote_source.dart
+│   │   ├── domain
+│   │   │   ├── entity
+│   │   │   │   └── promotion_video.dart
+│   │   │   ├── repository
+│   │   │   │   └── video_repository.dart
+│   │   │   └── usecase
+│   │   │       └── get_promotion_videos_usecase.dart
+│   │   └── presentation
+│   │       ├── blocs
+│   │       │   ├── promotion_videos
+│   │       │   └── video_player
+│   │       ├── views
+│   │       │   └── videos_player_page.dart
+│   │       └── widgets
+│   │           ├── video_container_widget.dart
+│   │           ├── video_updates.dart
+│   │           ├── video_updates_v1.dart
+│   │           └── video_widget.dart
+│   └── settings
+│       └── presentation
+│           ├── views
+│           │   ├── edit_info_page.dart
+│           │   ├── setting_page.dart
+│           │   └── settings_page_v2.dart
+│           └── widgets
+│               ├── custom_cliper.dart
+│               ├── custom_edit_button.dart
+│               ├── custom_edit_button_v1.dart
+│               ├── divider_widget.dart
+│               ├── pick_profile_image_page.dart
+│               ├── update_goal_page.dart
+│               ├── update_height_goal.dart
+│               └── update_weight_goal_page.dart
+├── firebase_options.dart
+├── gen
+│   ├── assets.gen.dart
+│   └── fonts.gen.dart
+├── injection.config.dart
+├── injection.dart
+├── main.dart
+├── projece.t
+└── projece_tree.txt
+
+156 directories, 255 files
