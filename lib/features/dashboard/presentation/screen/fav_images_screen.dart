@@ -191,7 +191,7 @@ class _FavImagesScreenState extends State<FavImagesScreen> {
                     SizedBox(height: 2.h),
                     // Image size
                     BuildText(
-                      text: _formatFileSize(image.imageSize),
+                      text: FileUtils.formatFileSize(image.imageSize),
                       fontSize: 10.sp,
                       color: Colors.grey.shade500,
                     ),
@@ -205,25 +205,7 @@ class _FavImagesScreenState extends State<FavImagesScreen> {
     );
   }
 
-  /// Format file size in human-readable format
-  String _formatFileSize(int bytes) {
-    if (bytes < 1024) {
-      return '$bytes';
-    } else if (bytes < 1024 * 1024) {
-      double kb = bytes / 1024;
-      return '${kb.toStringAsFixed(kb.truncateToDouble() == kb ? 0 : 1)}K';
-    } else if (bytes < 1024 * 1024 * 1024) {
-      double mb = bytes / (1024 * 1024);
-      return '${mb.toStringAsFixed(mb.truncateToDouble() == mb ? 0 : 1)}M';
-    } else {
-      double gb = bytes / (1024 * 1024 * 1024);
-      return '${gb.toStringAsFixed(gb.truncateToDouble() == gb ? 0 : 1)}GB';
-    }
-  }
-
-  /// Build image widget that handles both network and local images
   Widget _buildImageWidget(PixabayImage image) {
-    // Check if it's a local image (starts with '/' and user is 'You')
     final isLocalImage =
         image.user == 'You' && image.webformatURL.startsWith('/');
 
